@@ -45,7 +45,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  vertical_timeline_widget: ^0.0.5
+  vertical_timeline_widget: ^0.0.7
 ```
 
 ## Usage

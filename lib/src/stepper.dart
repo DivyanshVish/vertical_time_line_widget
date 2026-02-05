@@ -1017,10 +1017,12 @@ class StepNumber extends StatelessWidget {
           borderColor = properties.activeColor;
           contentColor = properties.backgroundColor;
         } else if (isCurrent) {
+          // Create a semi-transparent version of the active color
+          final c = properties.activeColor;
           backgroundColor = Color.fromRGBO(
-            properties.activeColor.red,
-            properties.activeColor.green,
-            properties.activeColor.blue,
+            (c.r * 255).round(),
+            (c.g * 255).round(),
+            (c.b * 255).round(),
             0.1,
           );
           borderColor = properties.activeColor;
