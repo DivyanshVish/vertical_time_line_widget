@@ -13,11 +13,30 @@ A customizable Timeline widget for Flutter to display chronological data with ti
 
 ## Screenshots
 
+### Timeline Widget
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_basic.png" width="200" alt="Basic Timeline"/>
   <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_custom_styled.png" width="200" alt="Custom Styled"/>
   <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_themed.png" width="200" alt="Themed"/>
   <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_real_world.png" width="200" alt="Real World"/>
+</p>
+
+### Steps Widget
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_steps_basic.png" width="200" alt="Basic Steps"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_steps_styled.png" width="200" alt="Styled Steps"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_steps_themed.png" width="200" alt="Themed Steps"/>
+</p>
+
+### VerticalStepper Widget
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_stepper_vertical.png" width="200" alt="Vertical Stepper"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_stepper_horizontal.png" width="200" alt="Horizontal Stepper"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_stepper_variants.png" width="200" alt="Stepper Variants"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_stepper_themed.png" width="200" alt="Themed Stepper"/>
 </p>
 
 ## Installation
@@ -207,6 +226,68 @@ A helper widget for step content, displaying a title and content items.
 | `content` | `List<Widget>` | Required. Content widgets under the title |
 | `titleStyle` | `TextStyle?` | Text style for the title |
 | `spacing` | `double` | Spacing between title and content (default: 8.0) |
+
+### VerticalStepper
+
+A multi-step navigation component with visual progress indication. Supports both horizontal and vertical layouts with customizable visual styles.
+
+```dart
+final controller = StepperController();
+
+VerticalStepper(
+  controller: controller,
+  direction: Axis.vertical,
+  variant: StepVariant.circle,
+  size: StepSize.medium,
+  steps: [
+    StepData(
+      title: Text('Personal Info'),
+      contentBuilder: (context) => PersonalInfoForm(),
+    ),
+    StepData(
+      title: Text('Address'),
+      contentBuilder: (context) => AddressForm(),
+    ),
+    StepData(
+      title: Text('Confirmation'),
+      contentBuilder: (context) => ConfirmationView(),
+    ),
+  ],
+)
+```
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `controller` | `StepperController` | Required. Controller for managing stepper state |
+| `steps` | `List<StepData>` | Required. List of steps to display |
+| `direction` | `Axis?` | Layout direction (horizontal or vertical) |
+| `size` | `StepSize?` | Size variant (small, medium, large) |
+| `variant` | `StepVariant?` | Visual variant (circle, circleAlt, line) |
+| `activeColor` | `Color?` | Color for active/completed steps |
+| `inactiveColor` | `Color?` | Color for inactive/pending steps |
+| `errorColor` | `Color?` | Color for failed steps |
+
+### StepperController
+
+Controller for managing stepper state and navigation.
+
+| Method | Description |
+|--------|-------------|
+| `nextStep()` | Advances to the next step |
+| `previousStep()` | Returns to the previous step |
+| `jumpToStep(int)` | Jumps directly to the specified step |
+| `setStatus(int, StepState?)` | Sets or clears the state of a specific step |
+
+### StepData
+
+Data model for individual stepper steps.
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `title` | `Widget` | Required. The title widget for this step |
+| `subtitle` | `Widget?` | Optional subtitle below the title |
+| `contentBuilder` | `WidgetBuilder?` | Builder for step content shown when active |
+| `icon` | `Widget?` | Custom icon for the step indicator |
 
 ## License
 

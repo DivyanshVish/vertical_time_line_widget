@@ -35,7 +35,7 @@ class TimelineExamplesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 6,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Timeline Examples'),
@@ -48,6 +48,7 @@ class TimelineExamplesScreen extends StatelessWidget {
               Tab(text: 'Themed'),
               Tab(text: 'Real World'),
               Tab(text: 'Steps'),
+              Tab(text: 'Stepper'),
             ],
           ),
         ),
@@ -58,6 +59,7 @@ class TimelineExamplesScreen extends StatelessWidget {
             ThemedTimelineExample(),
             RealWorldTimelineExample(),
             StepsExample(),
+            VerticalStepperExample(),
           ],
         ),
       ),
@@ -876,6 +878,455 @@ class StepsExample extends StatelessWidget {
               color: Color(0xFF00E676),
             ),
           ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Example 6: VerticalStepper Widget
+class VerticalStepperExample extends StatefulWidget {
+  const VerticalStepperExample({super.key});
+
+  @override
+  State<VerticalStepperExample> createState() => _VerticalStepperExampleState();
+}
+
+class _VerticalStepperExampleState extends State<VerticalStepperExample> {
+  final StepperController _verticalController = StepperController();
+  final StepperController _horizontalController = StepperController();
+  final StepperController _circleAltController = StepperController();
+  final StepperController _lineController = StepperController();
+
+  @override
+  void dispose() {
+    _verticalController.dispose();
+    _horizontalController.dispose();
+    _circleAltController.dispose();
+    _lineController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'VerticalStepper Widget',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'A multi-step navigation component with visual progress indication. Supports multiple layouts and variants.',
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+          ),
+          const SizedBox(height: 24),
+
+          // Vertical Circle Variant
+          Text(
+            'Vertical Circle Variant',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 16),
+          _buildStepperCard(
+            controller: _verticalController,
+            child: VerticalStepper(
+              controller: _verticalController,
+              direction: Axis.vertical,
+              variant: StepVariant.circle,
+              size: StepSize.medium,
+              steps: [
+                StepData(
+                  title: const Text('Personal Information'),
+                  subtitle: const Text('Enter your basic details'),
+                  contentBuilder: (context) => const StepContainer(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Fill in your name, email, and phone number.'),
+                        SizedBox(height: 8),
+                        Text('All fields are required.'),
+                      ],
+                    ),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Shipping Address'),
+                  subtitle: const Text('Where should we deliver?'),
+                  contentBuilder: (context) => const StepContainer(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Enter your complete shipping address.'),
+                        SizedBox(height: 8),
+                        Text('Include apartment/unit number if applicable.'),
+                      ],
+                    ),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Payment Method'),
+                  subtitle: const Text('How would you like to pay?'),
+                  contentBuilder: (context) => const StepContainer(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Select your preferred payment method.'),
+                        SizedBox(height: 8),
+                        Text('We accept credit cards, PayPal, and bank transfer.'),
+                      ],
+                    ),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Review & Confirm'),
+                  subtitle: const Text('Verify your order details'),
+                  contentBuilder: (context) => const StepContainer(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Review your order before submitting.'),
+                        SizedBox(height: 8),
+                        Text('Click confirm to place your order.'),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 48),
+
+          // Horizontal Circle Variant
+          Text(
+            'Horizontal Circle Variant',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 16),
+          _buildStepperCard(
+            controller: _horizontalController,
+            child: VerticalStepper(
+              controller: _horizontalController,
+              direction: Axis.horizontal,
+              variant: StepVariant.circle,
+              size: StepSize.small,
+              steps: [
+                StepData(
+                  title: const Text('Cart'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Review items in your cart'),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Shipping'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Enter shipping details'),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Payment'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Complete payment'),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Done'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Order confirmed!'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 48),
+
+          // Circle Alternative Variant
+          Text(
+            'Circle Alternative Variant',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 16),
+          _buildStepperCard(
+            controller: _circleAltController,
+            child: VerticalStepper(
+              controller: _circleAltController,
+              direction: Axis.horizontal,
+              variant: StepVariant.circleAlt,
+              size: StepSize.medium,
+              activeColor: Colors.teal,
+              steps: [
+                StepData(
+                  title: const Text('Sign Up'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Create your account'),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Verify'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Verify your email'),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Profile'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Complete your profile'),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Welcome'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Welcome aboard!'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 48),
+
+          // Line Variant
+          Text('Line Variant', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 16),
+          _buildStepperCard(
+            controller: _lineController,
+            child: VerticalStepper(
+              controller: _lineController,
+              direction: Axis.horizontal,
+              variant: StepVariant.line,
+              size: StepSize.medium,
+              activeColor: Colors.deepPurple,
+              steps: [
+                StepData(
+                  title: const Text('Draft'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Document is in draft state'),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Review'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Document under review'),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Approved'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Document approved'),
+                  ),
+                ),
+                StepData(
+                  title: const Text('Published'),
+                  contentBuilder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Document published'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 48),
+
+          // Themed Stepper
+          Text(
+            'Themed Stepper',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1E1E1E),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: VerticalStepperThemeData(
+              theme: const VerticalStepperTheme(
+                direction: Axis.vertical,
+                size: StepSize.large,
+                variant: StepVariant.circle,
+                activeColor: Color(0xFF00E676),
+                inactiveColor: Color(0xFF424242),
+                errorColor: Color(0xFFFF5252),
+              ),
+              child: _ThemedStepperDemo(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStepperCard({
+    required StepperController controller,
+    required Widget child,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          child,
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () => controller.previousStep(),
+                icon: const Icon(Icons.arrow_back),
+                label: const Text('Previous'),
+              ),
+              const SizedBox(width: 16),
+              ElevatedButton.icon(
+                onPressed: () => controller.nextStep(),
+                icon: const Icon(Icons.arrow_forward),
+                label: const Text('Next'),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ThemedStepperDemo extends StatefulWidget {
+  @override
+  State<_ThemedStepperDemo> createState() => _ThemedStepperDemoState();
+}
+
+class _ThemedStepperDemoState extends State<_ThemedStepperDemo> {
+  final StepperController _controller = StepperController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        VerticalStepper(
+          controller: _controller,
+          steps: [
+            StepData(
+              title: const Text(
+                'Initialize',
+                style: TextStyle(color: Colors.white),
+              ),
+              subtitle: const Text(
+                'Set up your project',
+                style: TextStyle(color: Color(0xFF9E9E9E)),
+              ),
+              contentBuilder: (context) => const Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Text(
+                  'Run flutter create my_app to initialize your project.',
+                  style: TextStyle(color: Color(0xFF9E9E9E)),
+                ),
+              ),
+            ),
+            StepData(
+              title: const Text(
+                'Configure',
+                style: TextStyle(color: Colors.white),
+              ),
+              subtitle: const Text(
+                'Add dependencies',
+                style: TextStyle(color: Color(0xFF9E9E9E)),
+              ),
+              contentBuilder: (context) => const Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Text(
+                  'Add vertical_timeline_widget to pubspec.yaml.',
+                  style: TextStyle(color: Color(0xFF9E9E9E)),
+                ),
+              ),
+            ),
+            StepData(
+              title: const Text('Build', style: TextStyle(color: Colors.white)),
+              subtitle: const Text(
+                'Create your UI',
+                style: TextStyle(color: Color(0xFF9E9E9E)),
+              ),
+              contentBuilder: (context) => const Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Text(
+                  'Import the package and start building!',
+                  style: TextStyle(color: Color(0xFF9E9E9E)),
+                ),
+              ),
+            ),
+            StepData(
+              title: const Text(
+                'Deploy',
+                style: TextStyle(color: Colors.white),
+              ),
+              subtitle: const Text(
+                'Ship your app',
+                style: TextStyle(color: Color(0xFF9E9E9E)),
+              ),
+              contentBuilder: (context) => const Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Text(
+                  'Build and deploy to your platform of choice.',
+                  style: TextStyle(color: Color(0xFF9E9E9E)),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            OutlinedButton.icon(
+              onPressed: () => _controller.previousStep(),
+              icon: const Icon(Icons.arrow_back, color: Color(0xFF00E676)),
+              label: const Text(
+                'Previous',
+                style: TextStyle(color: Color(0xFF00E676)),
+              ),
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(color: Color(0xFF00E676)),
+              ),
+            ),
+            const SizedBox(width: 16),
+            ElevatedButton.icon(
+              onPressed: () => _controller.nextStep(),
+              icon: const Icon(Icons.arrow_forward),
+              label: const Text('Next'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF00E676),
+                foregroundColor: const Color(0xFF1E1E1E),
+              ),
+            ),
+          ],
         ),
       ],
     );

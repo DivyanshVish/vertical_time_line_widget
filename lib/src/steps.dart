@@ -258,8 +258,13 @@ class Steps extends StatelessWidget {
               SizedBox(width: effectiveSpacing),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: isLast ? 0 : bottomPadding),
-                  child: children[i],
+                  padding: EdgeInsets.only(
+                    bottom: isLast ? 0 : bottomPadding,
+                  ),
+                  child: _AlignedStepContent(
+                    indicatorSize: effectiveIndicatorSize,
+                    child: children[i],
+                  ),
                 ),
               ),
             ],
@@ -275,6 +280,32 @@ class Steps extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: mapped,
       ),
+    );
+  }
+}
+
+/// Internal widget to align step content with the indicator center.
+class _AlignedStepContent extends StatelessWidget {
+  final double indicatorSize;
+  final Widget child;
+
+  const _AlignedStepContent({
+    required this.indicatorSize,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Calculate the vertical offset to center the first line with the indicator
+    // We estimate the title text height based on theme
+    final textTheme = Theme.of(context).textTheme;
+    final titleFontSize = textTheme.titleMedium?.fontSize ?? 16.0;
+    final lineHeight = titleFontSize * 1.2; // Approximate line height
+    final topOffset = (indicatorSize - lineHeight) / 2;
+
+    return Padding(
+      padding: EdgeInsets.only(top: topOffset > 0 ? topOffset : 0),
+      child: child,
     );
   }
 }
