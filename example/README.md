@@ -1,6 +1,6 @@
-# time_line_example
+# example
 
-Demonstrates how to use the time_line plugin.
+A new Flutter project.
 
 ## Getting Started
 

@@ -35,7 +35,7 @@ class TimelineExamplesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Timeline Examples'),
@@ -47,6 +47,7 @@ class TimelineExamplesScreen extends StatelessWidget {
               Tab(text: 'Custom Styled'),
               Tab(text: 'Themed'),
               Tab(text: 'Real World'),
+              Tab(text: 'Steps'),
             ],
           ),
         ),
@@ -56,6 +57,7 @@ class TimelineExamplesScreen extends StatelessWidget {
             CustomStyledTimelineExample(),
             ThemedTimelineExample(),
             RealWorldTimelineExample(),
+            StepsExample(),
           ],
         ),
       ),
@@ -567,11 +569,11 @@ class RealWorldTimelineExample extends StatelessWidget {
   }
 
   Widget _buildSection(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required Widget child,
-  }) {
+      BuildContext context, {
+        required IconData icon,
+        required String title,
+        required Widget child,
+      }) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -597,6 +599,285 @@ class RealWorldTimelineExample extends StatelessWidget {
           child,
         ],
       ),
+    );
+  }
+}
+
+/// Example 5: Steps Widget
+class StepsExample extends StatelessWidget {
+  const StepsExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Steps Widget',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'A vertical step progression widget with numbered indicators and connectors.',
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+          ),
+          const SizedBox(height: 24),
+
+          // Basic Steps
+          Text('Basic Steps', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 16),
+          Steps(
+            children: [
+              StepItem(
+                title: const Text('Create Account'),
+                content: const [
+                  Text(
+                    'Sign up with your email address and create a password.',
+                  ),
+                ],
+              ),
+              StepItem(
+                title: const Text('Verify Email'),
+                content: const [
+                  Text('Check your inbox for a verification link.'),
+                ],
+              ),
+              StepItem(
+                title: const Text('Complete Profile'),
+                content: const [
+                  Text('Add your personal information and preferences.'),
+                ],
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 48),
+
+          // Styled Steps
+          Text('Styled Steps', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 16),
+          Steps(
+            indicatorSize: 36,
+            indicatorColor: Colors.deepPurple,
+            spacing: 24,
+            connectorThickness: 2,
+            numberTextStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 16,
+            ),
+            children: [
+              StepItem(
+                title: const Text('Plan Your Trip'),
+                titleStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.deepPurple,
+                ),
+                content: const [
+                  Text('Choose your destination and travel dates.'),
+                  SizedBox(height: 4),
+                  Text('Research attractions and activities.'),
+                ],
+              ),
+              StepItem(
+                title: const Text('Book Accommodations'),
+                titleStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.deepPurple,
+                ),
+                content: const [
+                  Text('Find hotels or vacation rentals.'),
+                  SizedBox(height: 4),
+                  Text('Compare prices and read reviews.'),
+                ],
+              ),
+              StepItem(
+                title: const Text('Pack and Go!'),
+                titleStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.deepPurple,
+                ),
+                content: const [
+                  Text('Prepare your luggage and documents.'),
+                  SizedBox(height: 4),
+                  Text('Enjoy your adventure!'),
+                ],
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 48),
+
+          // Themed Steps
+          Text('Themed Steps', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1E1E1E),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: StepsThemeData(
+              theme: const StepsTheme(
+                indicatorSize: 32,
+                indicatorColor: Color(0xFF00E676),
+                spacing: 20,
+                connectorThickness: 2,
+                numberTextStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1E1E1E),
+                  fontFamily: 'monospace',
+                ),
+              ),
+              child: Steps(
+                children: [
+                  _buildDarkThemeStep(
+                    'Initialize Project',
+                    'flutter create my_app',
+                  ),
+                  _buildDarkThemeStep(
+                    'Add Dependencies',
+                    'flutter pub add vertical_timeline_widget',
+                  ),
+                  _buildDarkThemeStep(
+                    'Import Package',
+                    "import 'package:vertical_timeline_widget/...'",
+                  ),
+                  _buildDarkThemeStep(
+                    'Build Your UI',
+                    'Use Timeline or Steps widgets',
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 48),
+
+          // Tutorial Steps
+          Text(
+            'Tutorial / Onboarding',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.blue.shade50,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Steps(
+              indicatorColor: Colors.blue,
+              indicatorSize: 28,
+              numberTextStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+              children: const [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Welcome!',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'This quick tutorial will help you get started with our app.',
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Explore Features',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Swipe through the main screens to discover what you can do.',
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Customize Settings',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text('Head to Settings to personalize your experience.'),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "You're All Set!",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text('Start using the app and enjoy all its features.'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDarkThemeStep(String title, String code) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF2D2D2D),
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Text(
+            code,
+            style: const TextStyle(
+              fontFamily: 'monospace',
+              fontSize: 13,
+              color: Color(0xFF00E676),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

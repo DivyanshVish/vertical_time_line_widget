@@ -1,3 +1,9 @@
+## 0.0.5
+
+* Added `Steps` widget for vertical step progression with numbered indicators
+* Added `StepItem` helper widget for step content
+* Added `StepsTheme` and `StepsThemeData` for theming
+
 ## 0.0.4
 
 * Fixed repository URL

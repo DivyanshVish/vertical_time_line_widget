@@ -26,7 +26,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  vertical_timeline_widget: ^0.0.4
+  vertical_timeline_widget: ^0.0.5
 ```
 
 ## Usage
@@ -163,6 +163,50 @@ Theme configuration for Timeline widgets.
 | `titleTextStyle` | `TextStyle?` | Default title text style |
 | `contentTextStyle` | `TextStyle?` | Default content text style |
 | `useCircularDots` | `bool` | Use circular dots (default: true) |
+
+### Steps
+
+A vertical step progression widget with numbered indicators and connectors. Ideal for showing progress through multi-step processes, tutorials, or workflows.
+
+```dart
+Steps(
+  children: [
+    StepItem(
+      title: Text('Create Account'),
+      content: [Text('Sign up with your email address')],
+    ),
+    StepItem(
+      title: Text('Verify Email'),
+      content: [Text('Check your inbox for verification')],
+    ),
+    StepItem(
+      title: Text('Complete Profile'),
+      content: [Text('Add your personal information')],
+    ),
+  ],
+)
+```
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `children` | `List<Widget>` | Required. List of step content widgets |
+| `indicatorSize` | `double?` | Diameter of the step indicator circle |
+| `spacing` | `double?` | Gap between the indicator and content |
+| `indicatorColor` | `Color?` | Color of the indicator and connector |
+| `connectorThickness` | `double?` | Thickness of the connector line |
+| `numberTextStyle` | `TextStyle?` | Text style for the step number |
+| `bottomPadding` | `double` | Bottom padding for each step (default: 32.0) |
+
+### StepItem
+
+A helper widget for step content, displaying a title and content items.
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `title` | `Widget` | Required. The title of the step |
+| `content` | `List<Widget>` | Required. Content widgets under the title |
+| `titleStyle` | `TextStyle?` | Text style for the title |
+| `spacing` | `double` | Spacing between title and content (default: 8.0) |
 
 ## License
 
