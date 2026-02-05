@@ -14,10 +14,10 @@ A customizable Timeline widget for Flutter to display chronological data with ti
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_basic.png" width="200" alt="Basic Timeline"/>
-  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_custom_styled.png" width="200" alt="Custom Styled"/>
-  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_themed.png" width="200" alt="Themed"/>
-  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_real_world.png" width="200" alt="Real World"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_basic.png" width="200" alt="Basic Timeline"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_custom_styled.png" width="200" alt="Custom Styled"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_themed.png" width="200" alt="Themed"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_time_line_widget/main/assets/screenshot_real_world.png" width="200" alt="Real World"/>
 </p>
 
 ## Installation
@@ -26,7 +26,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  vertical_timeline_widget: ^0.0.1
+  vertical_timeline_widget: ^0.0.4
 ```
 
 ## Usage

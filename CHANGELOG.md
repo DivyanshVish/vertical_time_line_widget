@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Fixed repository URL
+
 ## 0.0.3
 
 * Updated package metadata
