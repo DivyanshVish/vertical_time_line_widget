@@ -13,9 +13,12 @@ A customizable Timeline widget for Flutter to display chronological data with ti
 
 ## Screenshots
 
-| Basic | Custom Styled | Themed | Real World |
-|:-----:|:-------------:|:------:|:----------:|
-| ![Basic Timeline](https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_basic.png) | ![Custom Styled](https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_custom_styled.png) | ![Themed](https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_themed.png) | ![Real World](https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_real_world.png) |
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_basic.png" width="200" alt="Basic Timeline"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_custom_styled.png" width="200" alt="Custom Styled"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_themed.png" width="200" alt="Themed"/>
+  <img src="https://raw.githubusercontent.com/DivyanshVish/vertical_timeline_widget/main/assets/screenshot_real_world.png" width="200" alt="Real World"/>
+</p>
 
 ## Installation
 
