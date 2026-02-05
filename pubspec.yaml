@@ -1,7 +1,7 @@
 name: vertical_timeline_widget
 description: "A customizable Timeline widget for Flutter to display chronological data with time information, titles, and visual indicators."
-version: 0.0.3
-repository: https://github.com/DivyanshVish/vertical_timeline_widget
+version: 0.0.4
+repository: https://github.com/DivyanshVish/vertical_time_line_widget
 
 environment:
   sdk: ^3.7.2
