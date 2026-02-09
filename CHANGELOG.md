@@ -1,4 +1,4 @@
-## 0.0.8
+## 0.0.8 WIP
 
 * Added `TimelineTile` widget for flexible timeline tile layouts with customizable indicators
 * Added `TimelineDivider` widget to connect tiles aligned on different axes
