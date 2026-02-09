@@ -5,8 +5,12 @@
 /// and visual indicators.
 library;
 
+export 'src/axis.dart';
+export 'src/style.dart';
+export 'src/tile.dart';
 export 'src/timeline.dart';
 export 'src/timeline_data.dart';
+export 'src/timeline_divider.dart';
 export 'src/timeline_theme.dart';
 export 'src/steps.dart';
 export 'src/stepper.dart';

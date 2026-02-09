@@ -1,3 +1,14 @@
+## 0.0.8
+
+* Added `TimelineTile` widget for flexible timeline tile layouts with customizable indicators
+* Added `TimelineDivider` widget to connect tiles aligned on different axes
+* Added `IndicatorStyle` for customizing timeline indicators (size, color, icon, padding)
+* Added `LineStyle` for customizing connecting lines (color, thickness)
+* Added `IconStyle` for adding icons inside indicators
+* Added `TimelineAxis` and `TimelineAlign` enums for axis and alignment control
+* Added `AxisPosition`, `AxisCoordinates` classes and `calculateAxisPositioning` helper
+* Added comprehensive Timeline Tile examples to demo app
+
 ## 0.0.7
 
 * Improved `Steps` widget alignment - title text now properly aligns with step indicator

@@ -35,7 +35,7 @@ class TimelineExamplesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 6,
+      length: 7,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Timeline Examples'),
@@ -49,6 +49,7 @@ class TimelineExamplesScreen extends StatelessWidget {
               Tab(text: 'Real World'),
               Tab(text: 'Steps'),
               Tab(text: 'Stepper'),
+              Tab(text: 'Timeline Tile'),
             ],
           ),
         ),
@@ -60,6 +61,7 @@ class TimelineExamplesScreen extends StatelessWidget {
             RealWorldTimelineExample(),
             StepsExample(),
             VerticalStepperExample(),
+            TimelineTileExample(),
           ],
         ),
       ),
@@ -1332,3 +1334,118 @@ class _ThemedStepperDemoState extends State<_ThemedStepperDemo> {
     );
   }
 }
+
+/// Example 7: Timeline Tile with Divider
+class TimelineTileExample extends StatelessWidget {
+  const TimelineTileExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Connect tiles with TimelineDivider',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'The TimelineDivider widget allows you to connect tiles that are aligned '
+            'in different horizontal or vertical axis, when combined with TimelineAlign.manual.',
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+          ),
+          const SizedBox(height: 24),
+
+          // Vertical Example
+          Text(
+            'Vertical Timeline',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 16),
+          const Example10VerticalContent(),
+
+          const SizedBox(height: 48),
+
+        ],
+      ),
+    );
+  }
+}
+
+/// Vertical example content (extracted from Example10Vertical)
+class Example10VerticalContent extends StatelessWidget {
+  const Example10VerticalContent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          TimelineTile(
+            alignment: TimelineAlign.manual,
+            lineXY: 0.1,
+            isFirst: true,
+            indicatorStyle: const IndicatorStyle(
+              width: 20,
+              color: Colors.purple,
+            ),
+            beforeLineStyle: const LineStyle(
+              color: Colors.purple,
+              thickness: 6,
+            ),
+          ),
+          TimelineDivider(
+            begin: 0.0,
+            end: 0.8154,
+            thickness: 6,
+            color: Colors.purple,
+            borderRadius: BorderRadius.circular(0),
+          ),
+          TimelineTile(
+            alignment: TimelineAlign.manual,
+            lineXY: 0.9,
+            beforeLineStyle: const LineStyle(
+              color: Colors.purple,
+              thickness: 6,
+            ),
+            afterLineStyle: const LineStyle(
+              color: Colors.deepOrange,
+              thickness: 6,
+            ),
+            indicatorStyle: const IndicatorStyle(
+              width: 20,
+              color: Colors.cyan,
+            ),
+          ),
+           TimelineDivider(
+            begin: 0.0,
+            end: 0.8154,
+            thickness: 6,
+            color: Colors.deepOrange,
+            borderRadius: BorderRadius.circular(0),
+          ),
+          TimelineTile(
+            alignment: TimelineAlign.manual,
+            lineXY: 0.1,
+            isLast: true,
+            beforeLineStyle: const LineStyle(
+              color: Colors.deepOrange,
+              thickness: 6,
+            ),
+            indicatorStyle: const IndicatorStyle(
+              width: 20,
+              color: Colors.red,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
